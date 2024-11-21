@@ -14,3 +14,9 @@
     background:ghostwhite;
     color: black;
 }
+.register > p {
+
+    font-size: large;
+    font-weight: bold;
+    color: rgb(248, 0, 0);
+}
