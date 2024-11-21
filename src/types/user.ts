@@ -1,4 +1,4 @@
-import { ICart } from "./cart";
+
 
 export interface IUser {
     _id: string;
