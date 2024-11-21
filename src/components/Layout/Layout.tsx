@@ -11,9 +11,8 @@ export default function Layout({ children }: Props) {
       <div className="header">
         <NavBar />
         <Logo />
-        {children}
       </div>
-
+      {children}
     </div>
   )
 }

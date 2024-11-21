@@ -1,7 +1,13 @@
 import React from 'react'
-
-export default function CategoryCard() {
+interface Props {
+  name: string
+  image: string
+}
+export default function CategoryCard({ name, image }: Props) {
   return (
-    <div>CategoryCard</div>
+    <div className='category-card-container'>
+      <img src={image} alt={name} />
+      <p>{name}</p>
+    </div>
   )
 }
