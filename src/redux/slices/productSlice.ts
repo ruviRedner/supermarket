@@ -6,7 +6,7 @@ import {productState} from "../../types/productState";
 import { useSelector } from "react-redux";
 // import { socket } from "../../App";
 
-
+const port = import.meta.env.VITE_PORT
 
 const initialData: productState = {
     error: null,
@@ -17,7 +17,7 @@ const initialData: productState = {
 const fetchAllProducts = createAsyncThunk('products/fetchAll',
     async (_, thunkAPI) => {
         try {
-            const response = await fetch('http://localhost:3000/api/products')
+            const response = await fetch(`http://localhost:${port}/api/products`)
             if (!response.ok) {
                 return thunkAPI.rejectWithValue("Couldn't get products Please try again")
             }
@@ -31,7 +31,7 @@ const fetchAllProducts = createAsyncThunk('products/fetchAll',
 const fetchByCategory = createAsyncThunk('products/fetchByCategory',
     async (category: string, thunkAPI) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/products/${category}`)
+            const response = await fetch(`http://localhost:${port}/api/products/${category}`)
             if (!response.ok) {
                 return thunkAPI.rejectWithValue("Couldn't get products Please try again")
             }
