@@ -1,8 +1,11 @@
+
+
 *{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
+
 
 .app {
     width: 100vw;
@@ -15,4 +18,14 @@ box-sizing: border-box;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.8); /* מעמעם עם צבע לבן */
     background-blend-mode: overlay;
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 4rem;
+    font-weight: bold;
 }

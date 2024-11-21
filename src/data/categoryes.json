@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Fruits",
+        "category": "Fruits",
+        "image": "https://www.diagnosisdiet.com/assets/images/c/fruit-og-d176ef00.jpg"
+    },
+    {
+        "name": "Vegetables", 
+        "category": "Vegetables",
+        "image": "https://assistinghands.com/6/wp-content/uploads/sites/29/2019/01/Eat-Vegetables.jpg"
+    },
+    {
+        "name": "Meat",
+        "category": "Meat", 
+        "image": "https://betterme.world/articles/wp-content/uploads/2023/09/shutterstock_2242365477-scaled.jpg"
+    },
+    {
+        "name": "Milk",
+        "category": "Milk",
+        "image": "https://www.dairyfoods.com/ext/resources/2022/10/27/Dairy-Products.jpeg?height=635&t=1666879344&width=1200"
+    },
+    {
+        "name": "Drinks",
+        "category": "Drink",
+        "image": "https://fiorisdeli.com/wp-content/uploads/2019/06/Beverages-Bottled.jpg"
+    },
+    {
+        "name": "Dry",
+        "category": "Dry",
+        "image": "https://confessionsofacleaninglady.com/wp-content/uploads/2023/05/cleaning-products-on-kitchen-counter.webp"
+    },
+    {
+        "name": "Fish",
+        "category": "Fish",
+        "image": "https://c8.alamy.com/comp/B6RWFC/fresh-fish-on-ice-in-a-supermarket-whole-trout-and-fillets-of-salmon-B6RWFC.jpg"
+    }
+]
