@@ -8,12 +8,7 @@ import { dataStatus } from "../../types/redux";
 import { IUser } from "../../types/user";
 import userState from "../../types/userState";
 
-
-<<<<<<< HEAD
-const port = import.meta.env.VITE_PORT
-=======
 const port = import.meta.env.VITE_PORT;
->>>>>>> login-page-ruvi
 const initialData: userState = {
   error: null,
   status: dataStatus.IDLE,
@@ -182,10 +177,10 @@ const userSlice = createSlice({
         state.error = null;
         state.user = null;
       })
-      .addCase(getRecipit.pending,(state)=>{
-        state.status = dataStatus.LOADING
-        state.error = null
-        state.user = null
+      .addCase(getRecipit.pending, (state) => {
+        state.status = dataStatus.LOADING;
+        state.error = null;
+        state.user = null;
       })
       .addCase(getRecipit.rejected, (state, action) => {
         state.error = action.error as string;
@@ -197,7 +192,7 @@ const userSlice = createSlice({
         state.user.carts = action.payload;
         state.error = null;
         state.status = dataStatus.SUCCESS;
-      })
+      });
   },
 });
 
