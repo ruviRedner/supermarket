@@ -15,7 +15,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='*' element={<div>404</div>} />
+          <Route path='*' element={<div className='not-found'>404</div>} />
           <Route path='register' element={<Register/>} />
           <Route path='login' element={<Login/>} />
           <Route path='logout' element={<div>logout</div>} />
