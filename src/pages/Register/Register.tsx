@@ -1,33 +1,60 @@
-import React, { useState } from 'react'
-import Login from '../Login/Login'
-import "./Register.css"
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { useNavigate } from 'react-router-dom';
-import { fetchRegister } from '../../redux/slices/userSlice';
+import React, { useEffect, useState } from "react";
+import "./Register.css";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
+import { fetchRegister } from "../../redux/slices/userSlice";
+import { dataStatus } from "../../types/redux";
 
 export default function Register() {
+    const { status } = useAppSelector((state) => state.user);
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [creditCard, setCreditCard] = useState("");
 
-  const { status  } = useAppSelector((state) => state.user);
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [creditCard, setCreditCard] = useState("");
+    const hendelInRegister = () => {
+        dispatch(
+            fetchRegister({
+                username,
+                password,
+                creditCard,
+            })
+        );
+    };
 
-  const hendelInRegister = () => {
-    dispatch(fetchRegister({
-      username, password,
-    })
-  )
-    navigate("/login");
-};
+    useEffect(() => {
+        if (status === dataStatus.FAILED) return;
+        navigate("/login");
+    }, [status]);
 
-  return (
-    <div className="register">
-      <input value={username} placeholder='name' type="text" />
-      <input value={password} placeholder='password' type="password" />
-      <input value={creditCard} type="text" />
-      <button>register</button>
-    </div>
-  )
+    return (
+        <div className="register">
+            <input
+                onChange={(e) => {
+                    setUsername(e.target.value);
+                }}
+                value={username}
+                placeholder="name"
+                type="text"
+            />
+            <input
+                onChange={(e) => {
+                    setPassword(e.target.value);
+                }}
+                value={password}
+                placeholder="password"
+                type="password"
+            />
+            <input
+                onChange={(e) => {
+                    setCreditCard(e.target.value);
+                }}
+                value={creditCard}
+                placeholder="creditCard"
+                type="text"
+            />
+            <button onClick={hendelInRegister}>register</button>
+        </div>
+    );
 }
