@@ -8,7 +8,7 @@ export default function CategoryList() {
     return (
     <div className='category-container'>
       {supermarketCategories.map((category, index) => (
-        <CategoryCard key={index} name={category.name} image={category.image} />
+        <CategoryCard  key={index} name={category.name} image={category.image}/>
       ))}
     </div>
   )
