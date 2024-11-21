@@ -4,7 +4,7 @@ import { IUser } from "./user";
 interface userState {
     error: string | null;
     status: dataStatus;
-    user: IUser | null;
+    user: IUser | any;
     role: string | undefined;
 
 }
