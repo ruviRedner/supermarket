@@ -34,7 +34,7 @@ const fetchLogin = createAsyncThunk('user/login',
     })
 
 const fetchRegister = createAsyncThunk('user/register',
-    async (user: { username: string, password: string}, thunkAPI) => {
+    async (user: { username: string, password: string, creditCard: string}, thunkAPI) => {
         try {
             const response = await fetch('http://localhost:3000/api/users/register', {
                 method: 'POST',
