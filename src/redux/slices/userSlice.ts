@@ -27,7 +27,7 @@ const fetchLogin = createAsyncThunk('user/login',
             }
             const data = await response.json()
             localStorage.setItem('token', data.token)
-            return data
+            return data.data
         } catch (error) {
             return thunkAPI.rejectWithValue('something went wrong')
         }
@@ -48,7 +48,7 @@ const fetchRegister = createAsyncThunk('user/register',
             }
             const data = await response.json()
   
-            return data
+            return data.data
         } catch (error) {
             console.log(error)
             return thunkAPI.rejectWithValue('something went wrong')
@@ -108,7 +108,6 @@ const userSlice = createSlice({
         }).addCase(fetchLogin.fulfilled, (state, action) => {
             state.user = action.payload as unknown as IUser
             state.error = null
-            state.role = action.payload.organization.split(" ")[0] == "IDF" ? "IDF" : "TERRORIST"
             state.status = dataStatus.SUCCESS
         }).addCase(fetchLogin.rejected, (state, action) => {
             state.error = action.error as string
@@ -126,7 +125,6 @@ const userSlice = createSlice({
         }).addCase(checkAuth.fulfilled, (state, action) => {
             state.user = action.payload as unknown as IUser
             state.status = dataStatus.SUCCESS
-            state.role = action.payload.organization.split(" ")[0] == "IDF" ? "IDF" : "TERRORIST"
         }).addCase(checkAuth.rejected, (state, action) => {
             state.error = action.error as string
             state.user = null
