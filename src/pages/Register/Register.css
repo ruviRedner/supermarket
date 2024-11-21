@@ -1,0 +1,15 @@
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column; 
+    height: 200%;
+    gap: 10px;
+}
+
+.register > input {
+    width: 30%;
+    height:  5%;
+    background-color: bisque;
+    color: black;
+}
