@@ -15,7 +15,7 @@ export default function Register() {
 
     const hendelInRegister = () => {
         dispatch(
-            fetchRegister({
+          fetchRegister({
                 username,
                 password,
                 creditCard,
@@ -24,7 +24,9 @@ export default function Register() {
     };
 
     useEffect(() => {
-        if (status === dataStatus.FAILED) return;
+      console.log(status);
+      
+        if (status === dataStatus.FAILED || status === dataStatus.IDLE) return;
         navigate("/login");
     }, [status]);
 
