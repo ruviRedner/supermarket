@@ -9,7 +9,11 @@ import { IUser } from "../../types/user";
 import userState from "../../types/userState";
 
 
+<<<<<<< HEAD
 const port = import.meta.env.VITE_PORT
+=======
+const port = import.meta.env.VITE_PORT;
+>>>>>>> login-page-ruvi
 const initialData: userState = {
   error: null,
   status: dataStatus.IDLE,
