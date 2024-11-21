@@ -8,7 +8,8 @@ import { dataStatus } from "../../types/redux";
 import { IUser } from "../../types/user";
 import userState from "../../types/userState";
 
-const port = process.env.PORT || 3000;
+
+const port = import.meta.env.VITE_PORT;
 const initialData: userState = {
   error: null,
   status: dataStatus.IDLE,
