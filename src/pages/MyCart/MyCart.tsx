@@ -1,26 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Root } from 'react-dom/client'
 import { useSelector } from 'react-redux'
+import './MyCart.css'
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/store'
 import { useNavigate } from 'react-router-dom'
-import { checkout } from '../../redux/slices/cartSlice'
+import { checkout, fetchCart } from '../../redux/slices/cartSlice'
+import { ICart } from '../../types/cart'
 
 export default function MyCart() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const user_id = useAppSelector((state: RootState) => state.user.user?._id)
   const cardData = useSelector((state: RootState) => state.cart.data)
-  const products = useSelector((state: RootState) => state.cart.data!.receipt)
-
-  const payment = async() => {
-    const user_id = useAppSelector((state: RootState) => state.user.user?._id)
-    const newCart = {...cardData, user_id}
-    await dispatch(checkout(newCart))
-    navigate('/pay')}
+useEffect(() => {
+  dispatch(fetchCart(user_id as string))
+})
   return (
     <div className='my-cart'>
       <h2>My Cart</h2>
       <div className="cart-container">
-        {products.length > 0 ? products.map((product, index) => (
+        {cardData?.receipt ? cardData.receipt.map((product, index) => (
           <div className="cart-card" key={index}>
             <div className="cart-details">
               <h3>{product.idproduct}</h3>
@@ -34,7 +33,7 @@ export default function MyCart() {
       <div className="cart-total">
         <h3>Total:</h3>
         <p>${cardData?.totalPrice}</p>
-        <button onClick={() => payment()}>to Pay & Confirm</button>
+        <button onClick={() => navigate('/checkout')}>to Pay & Confirm</button>
       </div>
 
     </div>

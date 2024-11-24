@@ -70,10 +70,11 @@ const fetchRegister = createAsyncThunk(
 // Async thunk for checking auth status
 const checkAuth = createAsyncThunk(
   "user/verify",
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     const token = localStorage.getItem("token");
+    console.log(token);
     if (!token) {
-      return rejectWithValue("No token found");
+      return thunkAPI.rejectWithValue("No token found");
     }
 
     try {
@@ -87,17 +88,17 @@ const checkAuth = createAsyncThunk(
           },
         }
       );
-
+console.log(response);
       if (!response.ok) {
         localStorage.removeItem("token");
-        return rejectWithValue("Invalid token");
+        return thunkAPI.rejectWithValue("Invalid token");
       }
 
       const data = await response.json();
       localStorage.setItem("token", data.token);
       return data;
     } catch (error) {
-      return rejectWithValue("Auth check failed");
+      return thunkAPI.rejectWithValue("Auth check failed");
     }
   }
 );

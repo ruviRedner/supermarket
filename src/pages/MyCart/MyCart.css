@@ -1,0 +1,25 @@
+.cart-container *{
+padding: 0.3rem;
+margin: 0.3rem;
+}
+.my-cart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cart-container{
+border: 1px solid black;
+border-radius: 5px;
+}
+.cart-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-bottom: 1px solid black;
+    border-radius: 5px;
+}

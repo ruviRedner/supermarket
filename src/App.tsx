@@ -9,11 +9,22 @@ import MyCart from './pages/MyCart/MyCart'
 import ProductList from './components/ProductList/ProductList'
 import Contact from './pages/contact/Contact'
 import Pay from './pages/Pay/Pay'
-import Admin from './pages/admin/Admin'
+import { useAppDispatch } from './redux/store'
+import { useEffect } from 'react'
+import { checkAuth } from './redux/slices/userSlice'
 
 function App() {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const autoLogin = async () => {
+      console.log("autoLogin");
+      await dispatch(checkAuth())
+    }
+    autoLogin()
+    console.log("autoLogin end");
 
-
+    
+  }, [])
   return (
     <div className='app'>
       <Layout>
@@ -23,10 +34,10 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
           <Route path='logout' element={<div>logout</div>} />
-          <Route path='my-cart' element={<MyCart />} />
-          <Route path='contact' element={<Contact />} />
-          <Route path='admin' element={<Admin />} />
-          <Route path='checkout' element={<Pay />} />
+          <Route path='my-cart' element={<MyCart/>} />
+          <Route path='contact' element={<Contact/>} />
+      
+          <Route path='checkout' element={<Pay/>} />
         </Routes>
       </Layout>
 

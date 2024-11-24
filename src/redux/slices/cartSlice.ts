@@ -17,6 +17,27 @@ import { ICart } from "../../types/cart";
     data: null,
   };
   
+const fetchCart = createAsyncThunk(
+    "cart/fetch",
+    async (id: string, thunkAPI) => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`http://localhost:${port}/api/cart/${id}`, {
+          headers: {
+            'Authorization': token?token:""
+          },
+        });
+        // if (!response.ok) {
+        //   return thunkAPI.rejectWithValue("Couldn't fetch cart Please try again");
+        // }
+        const data = await response.json();
+        return data.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue("something went wrong");
+      }
+    }
+  )
+
   const checkout = createAsyncThunk(
     "cart/checkout",
     async (cart: ICart, thunkAPI) => {
@@ -65,10 +86,24 @@ import { ICart } from "../../types/cart";
         state.data = null;
         state.status = dataStatus.FAILED;
       });
+      builder.addCase(fetchCart.pending, (state) => {
+        state.status = dataStatus.LOADING;
+        state.error = null;
+      });
+      builder.addCase(fetchCart.fulfilled, (state, action) => {
+        state.data = action.payload as unknown as ICart;
+        state.error = null;
+        state.status = dataStatus.SUCCESS;
+      });
+      builder.addCase(fetchCart.rejected, (state, action) => {
+        state.error = action.error as string;
+        state.data = null;
+        state.status = dataStatus.FAILED;
+      });
     },
   });
   
   export const { } = cartSlice.actions;
-  export { checkout};
+  export { fetchCart, checkout};
   export default cartSlice;
   
