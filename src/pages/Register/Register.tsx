@@ -13,6 +13,7 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [creditCard, setCreditCard] = useState("");
 
+
     const hendelInRegister = () => {
         dispatch(
           fetchRegister({
@@ -24,20 +25,21 @@ export default function Register() {
     };
 
     useEffect(() => {
-      console.log(status);
       
-        if (status === dataStatus.FAILED || status === dataStatus.IDLE) return;
+        if (status === dataStatus.FAILED || status === dataStatus.IDLE) return
+
         navigate("/login");
     }, [status]);
 
     return (
-        <div className="register">
+      <div className="register">
+          {status === dataStatus.FAILED? <p>The user already exists</p>: null }
             <input
                 onChange={(e) => {
                     setUsername(e.target.value);
                 }}
                 value={username}
-                placeholder="name"
+                placeholder="enter user name"
                 type="text"
             />
             <input
