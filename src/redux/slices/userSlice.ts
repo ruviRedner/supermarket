@@ -34,7 +34,6 @@ const fetchLogin = createAsyncThunk(
       const data = await response.json();
       
       localStorage.setItem("token", data.data.token);
-      console.log(data.data.token);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
@@ -147,10 +146,12 @@ const userSlice = createSlice({
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.user = action.payload as unknown as IUser;
-        console.log(action.payload);
+        console.log(state.user);
         
         state.error = null;
         state.status = dataStatus.SUCCESS;
+        console.log(state);
+        
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.error = action.error as string;
