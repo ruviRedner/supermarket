@@ -10,7 +10,6 @@ export default function Layout({ children }: Props) {
     <div className='layout-container'>
       <div className="header">
         <NavBar />
-        <Logo />
       </div >
       <div className="children">
       {children}

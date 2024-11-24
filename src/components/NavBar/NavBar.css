@@ -3,10 +3,10 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
-width: 70%;
-margin-right: 5rem;
-margin-left: 2rem;
-
+width: 100%;
+padding-left: 5rem;
+padding-right: 2rem;
+backdrop-filter: blur(10px);
 }
 
 .nav-item{
@@ -16,13 +16,44 @@ text-decoration: none;
 color: black;
 transition: background-color 0.4s ease, color 0.4s ease;
 border-radius: 5px;
-font-size: 1.5rem;
+font-size: 2rem;
+font-weight: 700;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 width: 15%;
 text-align: center;
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.nav-item:hover{
-background-color: rgb(155, 149, 149);
-color: white;
-border-radius: 7px;
+
+.nav-item:hover {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
 }
+
+.nav-item:hover::after {
+    width: 70%;
+}
+
+/* סטיילינג לכפתור פעיל */
+.nav-item.active {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.15);
+}
+
+.nav-item.active::after {
+    width: 70%;
+}
+
+/* סטיילינג מיוחד לאייקון העגלה */
+.cart-nav {
+    margin-left: 1rem;
+    padding: 0.6rem;
+    background:rgba(238, 215, 13, 0.372);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .cart-nav:hover {
+    transform: scale(1.1);
+} */
