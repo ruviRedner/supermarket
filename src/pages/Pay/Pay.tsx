@@ -1,4 +1,5 @@
 import React from 'react'
+import './Pay.css'
 import { useNavigate } from 'react-router-dom'
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/store'
 import { ICart } from '../../types/cart'
@@ -22,8 +23,8 @@ export default function Pay() {
       <input type="text" placeholder='Card Number'/>
       <input type="text" placeholder='CVV'/>
       <input type="text" placeholder='Expiration Date'/>
-      <p>Total: {cartData?.totalPrice}</p>
-      <button onClick={() => payment()}>Pay</button>
+      <p className='total'>Total: {cartData?.totalPrice || 0} ₪</p>
+      <button className='pay-btn' onClick={() => payment()}>Pay</button>
     </div>
   )
 }
