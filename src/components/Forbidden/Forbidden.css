@@ -1,0 +1,79 @@
+.forbidden {
+    min-height: 80vh;
+    min-width: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #8d8686 0%, #2c2c2c 100%);
+    color: white;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.forbidden h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ff4444;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+}
+
+.forbidden h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #cccccc;
+    font-weight: 300;
+}
+
+.forbidden p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.forbidden a {
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.forbidden a:hover {
+    background-color: #4CAF50;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+    }
+}
+
+/* רספונסיביות למסכים קטנים */
+@media (max-width: 768px) {
+    .forbidden h2 {
+        font-size: 2rem;
+    }
+    
+    .forbidden h3 {
+        font-size: 1.4rem;
+    }
+    
+    .forbidden p {
+        font-size: 1rem;
+    }
+}
