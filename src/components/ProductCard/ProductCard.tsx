@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  { useState } from "react";
 import { categoryEnum } from "../../types/enum/categoryEnum";
 import "./productCard.css";
 import { socket } from "../../App";
-import { RootState, useAppSelector } from "../../redux/store";
-import { IUser } from "../../types/user";
+import {  useAppSelector } from "../../redux/store";
+
 
 interface Props {
   product: {
