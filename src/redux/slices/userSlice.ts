@@ -31,7 +31,8 @@ const fetchLogin = createAsyncThunk(
         return thunkAPI.rejectWithValue("Couldn't login Please try again");
       }
       const data = await response.json();
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.data.token);
+      
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");

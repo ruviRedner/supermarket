@@ -14,7 +14,7 @@ export default function NavBar() {
       {!user && <NavLink to='/login' className='nav-item'>Login</NavLink>}
       {user && <NavLink to='/logout' className='nav-item'>Logout</NavLink>}
       <NavLink to='/register' className='nav-item'>Register</NavLink>
-      <NavLink to='/store' className='nav-item'>Connect-us</NavLink>
+      <NavLink to='/contact' className='nav-item'>Connect-us</NavLink>
       <NavLink to='/my-profile' className='nav-item'>Profile</NavLink>
       <NavLink to='/my-cart' className='nav-item'>
       <CartIcon />
