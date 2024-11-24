@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { categoryEnum } from '../../types/enum/categoryEnum'
 import { Socket } from 'socket.io-client'
+import './admin.css'
 
 export default function Admin() {
     const [name, setname] = useState<string>()
@@ -14,7 +15,7 @@ export default function Admin() {
         Socket.emit('newProduct', data)
     }
     return (
-        <div>
+        <div className='admin'>
             <input
                 type="text"
                 placeholder="name of product"
@@ -27,6 +28,7 @@ export default function Admin() {
                 value={img}
                 onChange={(e) => setimg(e.target.value)}
             />
+            <p>Category</p>
             <select value={category}
                 onChange={(e) => setcategory(e.target.value as categoryEnum)}>
                 <option value={categoryEnum.Drink}>Drink</option>
@@ -37,17 +39,18 @@ export default function Admin() {
                 <option value={categoryEnum.Vegetables}>Vegetables</option>
                 <option value={categoryEnum.Fruits}>Fruits</option>
             </select>
+            <p>Price</p>
             <input
                 type="number"
                 placeholder="price"
                 value={price}
                 onChange={(e) => setprice(e.target.value as any)}
-            /> <input
+            /> <p>Quantity</p><input
                 type="number"
                 placeholder="quantity"
                 value={quantity}
                 onChange={(e) => setquantity(e.target.value as any)}
-            />  <input id="inp"
+            /> <p>Description</p> <input id="inp"
                 type="text"
                 placeholder="description"
                 value={description}
