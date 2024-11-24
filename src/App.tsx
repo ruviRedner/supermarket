@@ -9,6 +9,7 @@ import MyCart from './pages/MyCart/MyCart'
 import ProductList from './components/ProductList/ProductList'
 import Contact from './pages/contact/Contact'
 import Pay from './pages/Pay/Pay'
+import GuardComponent from './components/GuardComponent/GuardComponent'
 
 function App() {
 
@@ -22,10 +23,9 @@ function App() {
           <Route path='register' element={<Register/>} />
           <Route path='login' element={<Login/>} />
           <Route path='logout' element={<div>logout</div>} />
-          <Route path='my-cart' element={<MyCart/>} />
-          <Route path='contact' element={<Contact/>} />
-      
-          <Route path='checkout' element={<Pay/>} />
+          <Route path='my-cart' element={<GuardComponent children={<MyCart/>}/>} />
+          <Route path='contact' element={<Contact/>} />   
+          <Route path='checkout' element={<GuardComponent children={<Pay/>}/>} />
         </Routes>
       </Layout>
 
