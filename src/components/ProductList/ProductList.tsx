@@ -15,12 +15,10 @@ useEffect(() => {
   dispatch(fetchAllProducts())
 }, [])
   return (
-    <div className='product-list-container'>
       <div className="product-list">
         {productsList && productsList.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
-    </div>
   )
 }
