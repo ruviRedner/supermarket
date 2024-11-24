@@ -1,9 +1,10 @@
-import  { useState } from "react";
+import { useEffect, useState } from "react";
 import { categoryEnum } from "../../types/enum/categoryEnum";
 import "./productCard.css";
 import { socket } from "../../App";
-import {  useAppSelector } from "../../redux/store";
-
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import productSlice from "../../redux/slices/productSlice";
+import { IProduct } from "../../types/product";
 
 interface Props {
   product: {
@@ -17,23 +18,46 @@ interface Props {
     description: string;
   };
 }
+
 export default function ProductCard(prop: Props) {
-  const { _id, name, img, category, price, quantity, prevPrice, description } =
-    prop.product;
+  const { _id, name, img, category, price, quantity, prevPrice, description } = prop.product;
   const user = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
   const [Quentity, setQuentity] = useState(0);
-  const addToCart = () => {
+
+  useEffect(() => {
+    
+    const handleProductsUpdate = (data: IProduct[]) => {
+      dispatch(productSlice.actions.setProduct(data));
+    };
+
+    socket.on("allProducts", handleProductsUpdate);
+    
+    
+    socket.on("addToCartSuccess", () => {
+      
+      socket.emit("get-allProducts");
+    });
+    
+    return () => {
+      socket.off("allProducts", handleProductsUpdate);
+      socket.off("addToCartSuccess");
+    };
+  }, [dispatch]);
+
+  const addToCart = async () => {
     if (Quentity === 0) {
       alert("Quantity is required");
       return;
     }
+
     const data = {
       userId: user?._id,
       prodactName: name,
       quantity: Quentity,
     };
-    console.log(data);
 
+    
     socket.emit("addToCart", data);
   };
 
@@ -51,8 +75,7 @@ export default function ProductCard(prop: Props) {
           <span style={{ fontWeight: "bold" }}>Description:</span> {description}
         </p>
         <p>
-          <span style={{ fontWeight: "bold" }}>Available in stock:</span>{" "}
-          {quantity}
+          <span style={{ fontWeight: "bold" }}>Available in Stack</span> {quantity}
         </p>
       </div>
       <div>
@@ -63,8 +86,7 @@ export default function ProductCard(prop: Props) {
           onChange={(e) => setQuentity(Number(e.target.value))}
           placeholder="Quantity"
         />
-        <button onClick={addToCart}>Add to cart</button>
-        {/* <button>Remove from cart</button> */}
+        <button onClick={addToCart}>הוסף לעגלה</button>
       </div>
     </div>
   );
