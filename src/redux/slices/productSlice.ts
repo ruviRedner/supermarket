@@ -96,9 +96,10 @@ const productSlice = createSlice({
         state.data = [];
         state.status = dataStatus.FAILED;
       })
-      .addCase(fetchByCategory.fulfilled, (state) => {
+      .addCase(fetchByCategory.fulfilled, (state, action) => {
         state.error = null;
         state.status = dataStatus.SUCCESS;
+        state.data = action.payload as IProduct[];
       })
       .addCase(fetchByCategory.rejected, (state, action) => {
         state.error = action.error as string;
