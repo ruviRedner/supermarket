@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import MyCart from './pages/MyCart/MyCart'
 import ProductList from './components/ProductList/ProductList'
 import Contact from './pages/contact/Contact'
+import Pay from './pages/Pay/Pay'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='my-cart' element={<MyCart/>} />
           <Route path='contact' element={<Contact/>} />
       
+          <Route path='checkout' element={<Pay/>} />
         </Routes>
       </Layout>
 
