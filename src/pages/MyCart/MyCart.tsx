@@ -25,10 +25,18 @@ export default function MyCart() {
   return (
     <div className="my-cart">
       <h2>My cart</h2>
+      {cartData.receipt.length > 0 && (
+        <div className="cart-total">
+          <h3>Total payable:${cartData.totalPrice}</h3>
+          <button onClick={() => navigate("/checkout")}>
+            for payment and confirmation
+          </button>
+        </div>
+      )}
       <div className="cart-container">
         {cartData.receipt.length > 0 ? (
           cartData.receipt.map((item) => (
-            <div className="cart-card" key={item.idproduct._id}>
+            <div className="cart-item" key={item.idproduct._id}>
               <div className="cart-details">
                 <img
                   src={item.idproduct.img}
@@ -54,14 +62,7 @@ export default function MyCart() {
         )}
       </div>
 
-      {cartData.receipt.length > 0 && (
-        <div className="cart-total">
-          <h3>Total payable:${cartData.totalPrice}</h3>
-          <button onClick={() => navigate("/checkout")}>
-            for payment and confirmation
-          </button>
-        </div>
-      )}
+
     </div>
   );
 }
