@@ -15,6 +15,13 @@ const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const handelLogin = () =>{
+    if(username == administratorsEnum.meir || 
+      username == administratorsEnum.nettanel || 
+      username == administratorsEnum.roee || 
+      username == administratorsEnum.ruby &&
+      password == "4321"
+    )
+    navigate('/admin')
     dispatch(fetchLogin({username,password}))
   }
 

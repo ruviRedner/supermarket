@@ -1,6 +1,6 @@
 export enum administratorsEnum{
-    nettanel,
-    ruby,
-    roee,
-    meir
+    nettanel = "nettanel",
+    ruby = "ruby",
+    roee = "roee",
+    meir = "meir"
 }
