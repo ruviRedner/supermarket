@@ -10,10 +10,15 @@ import ProductList from './components/ProductList/ProductList'
 import Contact from './pages/contact/Contact'
 import Pay from './pages/Pay/Pay'
 import GuardComponent from './components/GuardComponent/GuardComponent'
+import { useEffect } from 'react'
+import { useAppDispatch } from './redux/store'
+import { checkAuth } from './redux/slices/userSlice'
 
 function App() {
-
-
+const dispatch = useAppDispatch()
+useEffect(() => {
+  dispatch(checkAuth())
+},[])
   return (
     <div className='app'>
       <Layout>
