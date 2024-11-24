@@ -10,7 +10,6 @@ export default function SearchInput() {
   const hendelInSearchByName = async () => {  
     await dispatch(fetchByName(name))
   }
-  
   return (
     <div className='search-container'>
       <input value={name} onChange={(e)=> {setName(e.target.value)}} type="text" placeholder='Search' />
