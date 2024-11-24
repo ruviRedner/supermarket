@@ -12,6 +12,7 @@ import Pay from "./pages/Pay/Pay";
 import io from "socket.io-client";
 import GuardComponent from "./components/GuardComponent/GuardComponent";
 import Logout from "./components/Logout/Logout";
+import Profile from "./pages/Profile/Profile";
 export const socket = io("http://localhost:3000");
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='contact' element={<Contact />} />
           <Route path='checkout' element={<GuardComponent children={<Pay />} />} />
           <Route path='category/:category' element={<Home />} />
+          <Route path='my-profile' element={<Profile />} />
         </Routes>
       </Layout>
     </div>
