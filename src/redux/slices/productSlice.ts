@@ -54,6 +54,26 @@ const fetchByCategory = createAsyncThunk(
   }
 );
 
+const fetchByName = createAsyncThunk(
+  "products/fetchByName",
+  async (name: string, thunkAPI) => {
+    try {
+      const response = await fetch(
+        `http://localhost:${port}/api/products/search/${name}`
+      );
+      if (!response.ok) {
+        return thunkAPI.rejectWithValue(
+          "Couldn't get products Please try again"
+        );
+      }
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("something went wrong");
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState: initialData,
@@ -87,9 +107,23 @@ const productSlice = createSlice({
       .addCase(fetchByCategory.pending, (state) => {
         state.error = null;
         state.status = dataStatus.LOADING;
-      });
+      })
+      .addCase(fetchByName.pending, (state) => {
+        state.status = dataStatus.LOADING;
+        state.error = null;
+      })
+      .addCase (fetchByName.fulfilled, (state, action) => {
+        state.data = action.payload as IProduct[];
+        state.status = dataStatus.SUCCESS;
+
+      })
+      .addCase(fetchByName.rejected, (state, action)=> {
+        state.error = action.error as string;
+        state.status = dataStatus.FAILED;
+
+      })
   },
 });
 export const {} = productSlice.actions;
-export { fetchAllProducts, fetchByCategory };
+export { fetchAllProducts, fetchByCategory, fetchByName };
 export default productSlice;
