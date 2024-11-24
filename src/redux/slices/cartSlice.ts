@@ -40,6 +40,7 @@ import { ICart } from "../../types/cart";
       }
     }
   )
+  
 
   const cartSlice = createSlice({
     name: "cart",
