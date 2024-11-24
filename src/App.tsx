@@ -17,15 +17,15 @@ function App() {
     <div className="app">
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
           <Route path='*' element={<div className='not-found'>404</div>} />
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
           <Route path='logout' element={<div>logout</div>} />
-          <Route path='my-cart' element={<MyCart/>} />
-          <Route path='contact' element={<Contact/>} />
-      
-          <Route path='checkout' element={<Pay/>} />
+          <Route path='my-cart' element={<GuardComponent children={<MyCart />} />} />
+          <Route path='contact' element={<Contact />} />
+          <Route path='checkout' element={<GuardComponent children={<Pay />} />} />
+          <Route path='category/:category' element={<Home />} />
         </Routes>
       </Layout>
     </div>
