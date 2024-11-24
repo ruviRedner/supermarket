@@ -27,6 +27,8 @@ export default function Register() {
     useEffect(() => {
       
         if (status === dataStatus.FAILED || status === dataStatus.IDLE) return
+        console.log(status);
+        
         navigate("/login");
     }, [status]);
 

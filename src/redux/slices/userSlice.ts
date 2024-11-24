@@ -133,6 +133,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.role = undefined;
+      state.status = dataStatus.IDLE
       localStorage.removeItem("token");
     },
   },
@@ -142,6 +143,7 @@ const userSlice = createSlice({
         state.status = dataStatus.LOADING;
         state.error = null;
         state.user = null;
+
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.user = action.payload as unknown as IUser;
