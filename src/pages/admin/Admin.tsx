@@ -3,8 +3,10 @@ import { categoryEnum } from '../../types/enum/categoryEnum'
 import { Socket } from 'socket.io-client'
 import './admin.css'
 import { socket } from '../../App'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function Admin() {
+    const navigate = useNavigate()
     const [name, setname] = useState<string>()
     const [img, setimg] = useState<string>('')
     const [category, setcategory] = useState<categoryEnum>()
@@ -14,6 +16,7 @@ export default function Admin() {
     const handelAddProduct = async () => {
         const data = { name, img, category, price, quantity, description }
         socket.emit('newProduct', data)
+        navigate('/')
     }
     return (
         <div className='admin'>
