@@ -7,6 +7,7 @@ import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import MyCart from './pages/MyCart/MyCart'
 import ProductList from './components/ProductList/ProductList'
+import Pay from './pages/Pay/Pay'
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
           <Route path='login' element={<Login/>} />
           <Route path='logout' element={<div>logout</div>} />
           <Route path='my-cart' element={<MyCart/>} />
-      
+          <Route path='checkout' element={<Pay/>} />
         </Routes>
       </Layout>
 
