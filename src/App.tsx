@@ -12,8 +12,17 @@ import Pay from "./pages/Pay/Pay";
 import io from "socket.io-client";
 import GuardComponent from "./components/GuardComponent/GuardComponent";
 import Admin from "./pages/admin/Admin";
+import Logout from "./components/Logout/Logout";
+import { useEffect } from "react";
+import { useAppDispatch } from "./redux/store";
+import { checkAuth } from "./redux/slices/userSlice";
 export const socket = io("http://localhost:3000");
 function App() {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const autoLogin = async () => {await dispatch(checkAuth())}
+    autoLogin()
+  })
   return (
     <div className="app">
       <Layout>
@@ -22,7 +31,7 @@ function App() {
           <Route path='*' element={<div className='not-found'>404</div>} />
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
-          <Route path='logout' element={<div>logout</div>} />
+          <Route path='logout' element={<Logout />} />
           <Route path='my-cart' element={<GuardComponent children={<MyCart />} />} />
           <Route path='contact' element={<Contact />} />
           <Route path='checkout' element={<GuardComponent children={<Pay />} />} />
