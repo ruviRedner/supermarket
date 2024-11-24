@@ -1,0 +1,9 @@
+.admin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    margin: 5%;
+    padding: 2%;
+}

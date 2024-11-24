@@ -3,6 +3,7 @@ import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createSlice,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { dataStatus } from "../../types/redux";
 
@@ -77,7 +78,11 @@ const fetchByName = createAsyncThunk(
 const productSlice = createSlice({
   name: "products",
   initialState: initialData,
-  reducers: {},
+  reducers: {
+    setProduct(state, action: PayloadAction<IProduct[]>){
+      state.data = action.payload
+    }
+  },
   extraReducers: (builder: ActionReducerMapBuilder<productState>) => {
     builder
       .addCase(fetchAllProducts.pending, (state) => {
@@ -96,9 +101,10 @@ const productSlice = createSlice({
         state.data = [];
         state.status = dataStatus.FAILED;
       })
-      .addCase(fetchByCategory.fulfilled, (state) => {
+      .addCase(fetchByCategory.fulfilled, (state, action) => {
         state.error = null;
         state.status = dataStatus.SUCCESS;
+        state.data = action.payload as IProduct[];
       })
       .addCase(fetchByCategory.rejected, (state, action) => {
         state.error = action.error as string;

@@ -22,15 +22,21 @@ const fetchCart = createAsyncThunk(
     async (id: string, thunkAPI) => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:${port}/api/cart/${id}`, {
+        console.log("ftyg");
+        
+        const response = await fetch(`http://localhost:${port}/api/cart/userCart/${id}`, {
           headers: {
-            'Authorization': token?token:""
+            Authorization: token?token:""
           },
         });
+        console.log(response);
+        
         // if (!response.ok) {
         //   return thunkAPI.rejectWithValue("Couldn't fetch cart Please try again");
         // }
         const data = await response.json();
+        console.log(data);
+        
         return data.data;
       } catch (error) {
         return thunkAPI.rejectWithValue("something went wrong");
@@ -61,6 +67,7 @@ const fetchCart = createAsyncThunk(
       }
     }
   )
+  
 
   const cartSlice = createSlice({
     name: "cart",
