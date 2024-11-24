@@ -48,7 +48,7 @@ const fetchCart = createAsyncThunk(
 
 const checkout = createAsyncThunk(
   "cart/checkout",
-  async (cart: ICart, thunkAPI) => {
+  async (payment:{userId:string,creditCard:string}, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -59,7 +59,7 @@ const checkout = createAsyncThunk(
             "Content-Type": "application/json",
             Authorization: token ? token : "",
           },
-          body: JSON.stringify(cart),
+          body: JSON.stringify(payment),
         }
       );
       // if (!response.ok) {
