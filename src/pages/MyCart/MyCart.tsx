@@ -14,7 +14,7 @@ export default function MyCart() {
   const cardData = useSelector((state: RootState) => state.cart.data)
 useEffect(() => {
   dispatch(fetchCart(user_id as string))
-})
+},[])
   return (
     <div className='my-cart'>
       <h2>My Cart</h2>

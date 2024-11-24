@@ -5,6 +5,7 @@ import { socket } from "../../App";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import productSlice from "../../redux/slices/productSlice";
 import { IProduct } from "../../types/product";
+import { fetchCart } from "../../redux/slices/cartSlice";
 
 interface Props {
   product: {
@@ -59,6 +60,7 @@ export default function ProductCard(prop: Props) {
 
     
     socket.emit("addToCart", data);
+   await dispatch(fetchCart(user?._id as string))
   };
 
   return (
