@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { categoryEnum } from "../../types/enum/categoryEnum";
 import "./productCard.css";
+import { socket } from "../../App";
+import { RootState, useAppSelector } from "../../redux/store";
+import { IUser } from "../../types/user";
+
 interface Props {
   product: {
     _id: string;
@@ -17,16 +21,25 @@ interface Props {
 export default function ProductCard(prop: Props) {
   const { _id, name, img, category, price, quantity, prevPrice, description } =
     prop.product;
-
-  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.user.user);
+  const [Quentity, setQuentity] = useState(0);
   const addToCart = () => {
-    
-  }
-  // const [quentity, setQuentity] = useState(0);
-  console.log(img);
+    if (Quentity === 0) {
+      alert("Quantity is required");
+      return;
+    }
+    const data = {
+      userId: user?._id,
+      prodactName: name,
+      quantity: Quentity,
+    };
+    console.log(data);
+
+    socket.emit("addToCart", data);
+  };
 
   return (
-    <div className="card" onClick={addToCart}>
+    <div className="card">
       <img src={img} alt={name} />
       <div>
         <p>
@@ -44,15 +57,15 @@ export default function ProductCard(prop: Props) {
         </p>
       </div>
       <div>
-        {/* <input
+        <input
           type="number"
           min="0"
           max={quantity}
           onChange={(e) => setQuentity(Number(e.target.value))}
           placeholder="Quantity"
-        /> */}
-        {/* <button>Add to cart</button>
-        <button>Remove from cart</button> */}
+        />
+        <button onClick={addToCart}>Add to cart</button>
+        {/* <button>Remove from cart</button> */}
       </div>
     </div>
   );
