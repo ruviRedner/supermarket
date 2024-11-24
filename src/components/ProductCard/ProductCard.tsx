@@ -60,7 +60,7 @@ export default function ProductCard(prop: Props) {
 
     
     socket.emit("addToCart", data);
-   await dispatch(fetchCart(user?._id as string))
+    await dispatch(fetchCart(user?._id as string))
   };
 
   return (
