@@ -18,12 +18,11 @@ const fetchAllProducts = createAsyncThunk('products/fetchAll',
     async (_, thunkAPI) => {
         try {
             const response = await fetch(`http://localhost:${port}/api/products`)
-            if (!response.ok) {
-                return thunkAPI.rejectWithValue("Couldn't get products Please try again")
-            }
             const data = await response.json()
             return data.data
         } catch (error) {
+            console.log(error);
+            
             return thunkAPI.rejectWithValue('something went wrong')
         }
     })
@@ -55,11 +54,16 @@ const productSlice = createSlice({
             state.status = dataStatus.LOADING
             state.error = null
         }).addCase(fetchAllProducts.fulfilled, (state, action) => {
+            
             state.data = action.payload as unknown as IProduct[]
+            console.log(state.data);
+            
             state.error = null
             state.status = dataStatus.SUCCESS
         }).addCase(fetchAllProducts.rejected, (state, action) => {
             state.error = action.error as string
+            console.log(state.error);
+            
             state.data = []
             state.status = dataStatus.FAILED
         }).addCase(fetchByCategory.fulfilled, (state) => {
