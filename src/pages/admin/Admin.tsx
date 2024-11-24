@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { categoryEnum } from '../../types/enum/categoryEnum'
 import { Socket } from 'socket.io-client'
 import './admin.css'
+import { socket } from '../../App'
 
 export default function Admin() {
     const [name, setname] = useState<string>()
@@ -12,7 +13,7 @@ export default function Admin() {
     const [description, setdescription] = useState('')
     const handelAddProduct = async () => {
         const data = { name, img, category, price, quantity, description }
-        Socket.emit('newProduct', data)
+        socket.emit('newProduct', data)
     }
     return (
         <div className='admin'>

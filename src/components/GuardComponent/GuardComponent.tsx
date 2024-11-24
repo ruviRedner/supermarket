@@ -1,15 +1,26 @@
 import React from 'react'
-import { useAppSelector } from '../../redux/store'
+import { RootState, useAppSelector } from '../../redux/store'
 import Forbiden from '../Forbidden/Forbidden'
 import Forbidden from '../Forbidden/Forbidden'
+import { dataStatus } from '../../types/redux'
 interface Props {
     children: React.ReactNode
 }
 export default function GuardComponent({ children }: Props) {
+  const state = useAppSelector((state: RootState) => state.user)
     const user = useAppSelector(state => state.user.user)
+ if (user) {
   return (
-    <div>{
-        user ? children : <Forbidden/>
-    }</div>
+    <div>{children}</div>
   )
+ } 
+ else if (state.status != dataStatus.FAILED) {
+  return (
+    <div>Loading ...</div>
+  )
+}else if (!user ) {
+  return (
+    <div><Forbiden /></div>
+  )
+ }
 }
