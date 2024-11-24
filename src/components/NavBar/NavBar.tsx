@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
 import userState from '../../types/userState'
 import './NavBar.css'
+import CartIcon from '../CartIcon/CartIcon'
 
 export default function NavBar() {
   const user = useAppSelector((state: any) => state.user.user)
@@ -15,6 +16,9 @@ export default function NavBar() {
       <NavLink to='/register' className='nav-item'>Register</NavLink>
       <NavLink to='/store' className='nav-item'>Connect-us</NavLink>
       <NavLink to='/my-profile' className='nav-item'>Profile</NavLink>
+      <NavLink to='/my-cart' className='nav-item'>
+      <CartIcon />
+      </NavLink>
 
     </div>
   )
