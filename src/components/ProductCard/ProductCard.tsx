@@ -23,9 +23,13 @@ export default function ProductCard(prop: Props) {
         <div className="product-details">
         <p>{name}</p>
         <p>${price}</p>
+        <p>{description}</p>
+        <p>Available in stock: {quantity}</p>
           </div>
         <div className="product-bar">
           <button>Add to cart</button>
+          <p></p>
+
       
         </div>
       </div>
