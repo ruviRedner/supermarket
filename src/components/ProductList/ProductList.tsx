@@ -9,17 +9,19 @@ import { useParams } from 'react-router-dom';
 export default function ProductList() {
   const productList = useAppSelector((state: RootState) => state.products.data);
   const dispatch = useAppDispatch();
-  const { category } = useParams();
+  const category = useParams().category;
 
   useEffect(() => {
     if (category) {
       dispatch(fetchByCategory(category));
+      
     }
     else{
       dispatch(fetchAllProducts());
+
     }
 
-  }, []);
+  }, [category]);
 
   return (
     <div className='grid'>
