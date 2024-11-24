@@ -1,18 +1,27 @@
-import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../redux/store";
-import {  useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import {  useEffect, useState } from "react";
 import { fetchLogin } from "../../redux/slices/userSlice";
 import "./login.css"
+import { dataStatus } from "../../types/redux";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  
+  const navigate = useNavigate()
+  const { status, user } = useAppSelector((state) => state.user);
+
   
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const handelLogin = () =>{
     dispatch(fetchLogin({username,password}))
   }
+
+  useEffect(()=>{
+    if(!user) return
+    navigate("/")
+  },[user])
+
   return (
     <div className="login">
       <input id="inp"
