@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
-import { fetchRegister } from "../../redux/slices/userSlice";
+import { fetchRegister, logout } from "../../redux/slices/userSlice";
 import { dataStatus } from "../../types/redux";
 
 export default function Register() {
@@ -30,6 +30,7 @@ export default function Register() {
         console.log(status);
         
         navigate("/login");
+        dispatch(logout())
     }, [status]);
 
     return (

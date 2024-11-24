@@ -25,7 +25,7 @@ const Login = () => {
             dispatch(fetchLogin({ username, password }));
         }
         navigate('/')
-        dispatch(fetchLogin({ username: username, password: password }));
+        dispatch(fetchLogin({ username, password }));
     };
 
     useEffect(() => {
