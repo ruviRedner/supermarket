@@ -15,7 +15,10 @@ export default function ProductList() {
     if (category) {
       dispatch(fetchByCategory(category));
     }
-    dispatch(fetchAllProducts());
+    else{
+      dispatch(fetchAllProducts());
+    }
+
   }, []);
 
   return (
