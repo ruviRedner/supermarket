@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/store'
 import { useNavigate } from 'react-router-dom'
 import { checkout } from '../../redux/slices/cartSlice'
+import { ICart } from '../../types/cart'
 
 export default function MyCart() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ export default function MyCart() {
   const payment = async() => {
     const user_id = useAppSelector((state: RootState) => state.user.user?._id)
     const newCart = {...cardData, user_id}
-    await dispatch(checkout(newCart))
+    await dispatch(checkout(newCart as ICart))
     navigate('/pay')}
   return (
     <div className='my-cart'>
