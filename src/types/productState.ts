@@ -1,5 +1,7 @@
+import { IProduct } from "./product";
+
 export interface productState {
-    data: any[],
+    data: IProduct[],
     status: string,
     error: any
 }

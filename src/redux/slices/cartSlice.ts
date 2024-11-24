@@ -61,6 +61,7 @@ const fetchCart = createAsyncThunk(
       }
     }
   )
+  
 
   const cartSlice = createSlice({
     name: "cart",
