@@ -8,7 +8,7 @@ import { dataStatus } from "../../types/redux";
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
-  const { status, user } = useAppSelector((state) => state.user);
+  const { user } = useAppSelector((state) => state.user);
 
   
   const [username, setusername] = useState("");
