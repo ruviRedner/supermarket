@@ -1,37 +1,59 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { categoryEnum } from '../../types/enum/categoryEnum';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { categoryEnum } from "../../types/enum/categoryEnum";
+import "./productCard.css";
 interface Props {
-  product:{
+  product: {
     _id: string;
     name: string;
-    image?: string;
-  category: categoryEnum;
-  price: number;
-  quantity: number;
-  prevPrice?: Number;
-  description: string;
-}
+    img: string;
+    category: categoryEnum;
+    price: number;
+    quantity: number;
+    prevPrice?: number;
+    description: string;
+  };
 }
 export default function ProductCard(prop: Props) {
-  const { _id, name , image, category, price, quantity, prevPrice, description } = prop.product
+  const { _id, name, img, category, price, quantity, prevPrice, description } =
+    prop.product;
 
-    const navigate = useNavigate()
-    return (
-      <div className='product-card'>
-        <img src={image} alt={name} className='image'/>
-        <div className="product-details">
-        <p>{name}</p>
-        <p>${price}</p>
-        <p>{description}</p>
-        <p>Available in stock: {quantity}</p>
-          </div>
-        <div className="product-bar">
-          <button>Add to cart</button>
-          <p></p>
+  const navigate = useNavigate();
+  const addToCart = () => {
+    
+  }
+  // const [quentity, setQuentity] = useState(0);
+  console.log(img);
 
-      
-        </div>
+  return (
+    <div className="card" onClick={addToCart}>
+      <img src={img} alt={name} />
+      <div>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Name:</span> {name}
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Price:</span> ${price}
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Description:</span> {description}
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Available in stock:</span>{" "}
+          {quantity}
+        </p>
       </div>
-    )
+      <div>
+        {/* <input
+          type="number"
+          min="0"
+          max={quantity}
+          onChange={(e) => setQuentity(Number(e.target.value))}
+          placeholder="Quantity"
+        /> */}
+        {/* <button>Add to cart</button>
+        <button>Remove from cart</button> */}
+      </div>
+    </div>
+  );
 }
