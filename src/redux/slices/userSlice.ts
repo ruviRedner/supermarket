@@ -29,8 +29,10 @@ const fetchLogin = createAsyncThunk(
       });
       if (!response.ok) {
         return thunkAPI.rejectWithValue("Couldn't login Please try again");
+        
       }
       const data = await response.json();
+      
       localStorage.setItem("token", data.data.token);
       console.log(data.data.token);
       return data.data;
@@ -143,6 +145,8 @@ const userSlice = createSlice({
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.user = action.payload as unknown as IUser;
+        console.log(action.payload);
+        
         state.error = null;
         state.status = dataStatus.SUCCESS;
       })
