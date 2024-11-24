@@ -27,8 +27,8 @@ export default function MyCart() {
       <h2>My cart</h2>
       <div className="cart-container">
         {cartData.receipt.length > 0 ? (
-          cartData.receipt.map((item) => (
-            <div className="cart-card" key={item.idproduct._id}>
+          cartData.receipt.map((item,index) => (
+            <div className="cart-card" key={ `${item.idproduct._id}${index}`}>
               <div className="cart-details">
                 <img
                   src={item.idproduct.img}
