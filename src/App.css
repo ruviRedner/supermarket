@@ -9,17 +9,17 @@ box-sizing: border-box;
 
 .app {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-image: url("https://peakbusinessvaluation.com/wp-content/uploads/how-to-value-a-grocery-store-or-supermarket-980x653.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.8); /* מעמעם עם צבע לבן */
+    background-color: rgba(255, 255, 255, 0.8);
     background-blend-mode: overlay;
+    background-attachment: fixed; 
 }
-
 .not-found {
     display: flex;
     flex-direction: column;

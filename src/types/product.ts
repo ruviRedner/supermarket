@@ -6,7 +6,7 @@ export interface IProduct {
     description: string,
     price: number,
     quantity: number,
-    image: string,
+    img: string,
     category: categoryEnum,
     prevPrice: number
 }

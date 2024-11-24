@@ -9,7 +9,7 @@ export default function CartIcon() {
   return (
     <div className='cart-icon' onClick={() => navigate('/my-cart')}>
       <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart-icon" />
-      <p>{cardData?.receipt.length}</p>
+      <p>{cardData?.receipt? cardData.receipt.length:0}</p>
       <p>{cardData?.totalPrice &&`${cardData?.totalPrice} ₪`}</p>
       <p>{!cardData?.totalPrice &&`0 ₪`}</p>
     </div>
