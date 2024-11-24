@@ -60,7 +60,7 @@ export default function ProductCard(prop: Props) {
 
     
     socket.emit("addToCart", data);
-   await dispatch(fetchCart(user?._id as string))
+    await dispatch(fetchCart(user?._id as string))
   };
 
   return (
@@ -85,6 +85,7 @@ export default function ProductCard(prop: Props) {
           type="number"
           min="0"
           max={quantity}
+          value={Quentity}
           onChange={(e) => setQuentity(Number(e.target.value))}
           placeholder="Quantity"
         />

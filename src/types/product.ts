@@ -10,3 +10,8 @@ export interface IProduct {
     category: categoryEnum,
     prevPrice: number
 }
+export interface IReceiptItem {
+    idproduct: IProduct;  
+    quantity: number;
+    price: number;
+  }

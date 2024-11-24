@@ -62,11 +62,11 @@ const fetchByName = createAsyncThunk(
       const response = await fetch(
         `http://localhost:${port}/api/products/search/${name}`
       );
-      if (!response.ok) {
-        return thunkAPI.rejectWithValue(
-          "Couldn't get products Please try again"
-        );
-      }
+      // if (!response.ok) {
+      //   return thunkAPI.rejectWithValue(
+      //     "Couldn't get products Please try again"
+      //   );
+      // }
       const data = await response.json();
       return data.data;
     } catch (error) {
