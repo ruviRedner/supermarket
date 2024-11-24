@@ -15,22 +15,30 @@ import { useAppDispatch } from './redux/store'
 import { checkAuth } from './redux/slices/userSlice'
 
 function App() {
-const dispatch = useAppDispatch()
-useEffect(() => {
-  dispatch(checkAuth())
-},[])
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const autoLogin = async () => {
+      console.log("autoLogin");
+      await dispatch(checkAuth())
+    }
+    autoLogin()
+    console.log("autoLogin end");
+
+    
+  }, [])
   return (
     <div className='app'>
       <Layout>
         <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home />} />
           <Route path='*' element={<div className='not-found'>404</div>} />
-          <Route path='register' element={<Register/>} />
-          <Route path='login' element={<Login/>} />
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
           <Route path='logout' element={<div>logout</div>} />
-          <Route path='my-cart' element={<GuardComponent children={<MyCart/>}/>} />
-          <Route path='contact' element={<Contact/>} />   
-          <Route path='checkout' element={<GuardComponent children={<Pay/>}/>} />
+          <Route path='my-cart' element={<GuardComponent children={<MyCart />} />} />
+          <Route path='contact' element={<Contact />} />
+          <Route path='checkout' element={<GuardComponent children={<Pay />} />} />
+          <Route path='category/:category' element={<Home />} />
         </Routes>
       </Layout>
 

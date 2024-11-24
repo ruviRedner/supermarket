@@ -6,7 +6,7 @@ import  supermarketCategories from '../../data/categoryes.json'
 import { useParams } from 'react-router-dom'
 export default function CategoryList() {
   
-  const category = useParams().category
+
     return (
     <div className='category-container'>
       {supermarketCategories.map((category, index) => (

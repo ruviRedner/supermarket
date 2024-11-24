@@ -23,7 +23,7 @@ export default function ProductCard(prop: Props) {
     
   }
   // const [quentity, setQuentity] = useState(0);
-  console.log(img);
+  // console.log(img);
 
   return (
     <div className="card" onClick={addToCart}>
