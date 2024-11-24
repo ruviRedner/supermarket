@@ -13,6 +13,8 @@ import GuardComponent from './components/GuardComponent/GuardComponent'
 import { useEffect } from 'react'
 import { useAppDispatch } from './redux/store'
 import { checkAuth } from './redux/slices/userSlice'
+import Logo from './components/Logo/Logo'
+import Logout from './components/Logout/Logout'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -34,7 +36,7 @@ function App() {
           <Route path='*' element={<div className='not-found'>404</div>} />
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
-          <Route path='logout' element={<div>logout</div>} />
+          <Route path='logout' element={<Logout />} />
           <Route path='my-cart' element={<GuardComponent children={<MyCart />} />} />
           <Route path='contact' element={<Contact />} />
           <Route path='checkout' element={<GuardComponent children={<Pay />} />} />

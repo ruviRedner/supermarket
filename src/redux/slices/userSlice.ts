@@ -32,7 +32,7 @@ const fetchLogin = createAsyncThunk(
       }
       const data = await response.json();
       localStorage.setItem("token", data.data.token);
-      
+      console.log(data.data.token);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
@@ -71,12 +71,7 @@ const fetchRegister = createAsyncThunk(
 const checkAuth = createAsyncThunk(
   "user/verify",
   async (_, thunkAPI) => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    if (!token) {
-      return thunkAPI.rejectWithValue("No token found");
-    }
-
+    const Token = localStorage.getItem("token");
     try {
       const response = await fetch(
         `http://localhost:${port}/api/users/verify`,
@@ -84,20 +79,23 @@ const checkAuth = createAsyncThunk(
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: Token?Token as string:"",
           },
         }
       );
-console.log(response);
-      if (!response.ok) {
-        localStorage.removeItem("token");
-        return thunkAPI.rejectWithValue("Invalid token");
-      }
+    // console.log(response);
+      // if (!response.ok) {
+      //   localStorage.removeItem("token");
+      //   return thunkAPI.rejectWithValue("Invalid token");
+      // }
 
       const data = await response.json();
-      localStorage.setItem("token", data.token);
-      return data;
+      console.log(data)
+      localStorage.setItem("token", data.data.token);
+      console.log(data.data.token)
+      return data.data;
     } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue("Auth check failed");
     }
   }
@@ -133,7 +131,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.role = undefined;
-      localStorage.setItem("token", "");
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<userState>) => {
@@ -170,14 +168,12 @@ const userSlice = createSlice({
       })
       .addCase(checkAuth.rejected, (state, action) => {
         state.error = action.error as string;
-        state.user = null;
         state.role = undefined;
         state.status = dataStatus.FAILED;
       })
       .addCase(checkAuth.pending, (state) => {
         state.status = dataStatus.LOADING;
         state.error = null;
-        state.user = null;
       })
       .addCase(getRecipit.pending, (state) => {
         state.status = dataStatus.LOADING;
