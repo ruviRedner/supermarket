@@ -12,7 +12,7 @@ export default function SearchInput() {
   }
   return (
     <div className='search-container'>
-      <input value={name} onChange={(e)=> {setName(e.target.value)}} type="text" placeholder='Search' />
+      <input value={name} onChange={(e)=> {setName(e.target.value)}} type="text" placeholder={data.length? "Search": "not found product"} />
       <div onClick={hendelInSearchByName}  className="search-icon">🔍</div>
     </div>
   )
