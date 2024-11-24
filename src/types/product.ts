@@ -1,3 +1,5 @@
+import { categoryEnum } from "./enum/categoryEnum";
+
 export interface IProduct {
     _id: string,
     name: string,
@@ -5,6 +7,6 @@ export interface IProduct {
     price: number,
     quantity: number,
     image: string,
-    category: string,
+    category: categoryEnum,
     prevPrice: number
 }
