@@ -11,6 +11,7 @@ import Contact from "./pages/contact/Contact";
 import Pay from "./pages/Pay/Pay";
 import io from "socket.io-client";
 import GuardComponent from "./components/GuardComponent/GuardComponent";
+import Admin from "./pages/admin/Admin";
 import Logout from "./components/Logout/Logout";
 import { useEffect } from "react";
 import { useAppDispatch } from "./redux/store";
@@ -35,6 +36,7 @@ function App() {
           <Route path='contact' element={<Contact />} />
           <Route path='checkout' element={<GuardComponent children={<Pay />} />} />
           <Route path='category/:category' element={<Home />} />
+          <Route path="admin" element={<Admin/>}/>
         </Routes>
       </Layout>
     </div>
