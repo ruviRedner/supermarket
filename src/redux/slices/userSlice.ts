@@ -135,6 +135,9 @@ const userSlice = createSlice({
       state.status = dataStatus.IDLE
       localStorage.removeItem("token");
     },
+    returnStatusToIdle: (state) =>{
+      state.status = dataStatus.IDLE
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<userState>) => {
     builder
@@ -201,6 +204,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, returnStatusToIdle } = userSlice.actions;
 export { fetchLogin, fetchRegister, checkAuth };
 export default userSlice;
