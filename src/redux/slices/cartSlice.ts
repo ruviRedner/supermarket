@@ -3,6 +3,7 @@ import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createSlice,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { dataStatus } from "../../types/redux";
 import { IUser } from "../../types/user";
@@ -48,7 +49,7 @@ const fetchCart = createAsyncThunk(
 
 const checkout = createAsyncThunk(
   "cart/checkout",
-  async (cart: ICart, thunkAPI) => {
+  async (payment:{userId:string,creditCard:string}, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -59,7 +60,7 @@ const checkout = createAsyncThunk(
             "Content-Type": "application/json",
             Authorization: token ? token : "",
           },
-          body: JSON.stringify(cart),
+          body: JSON.stringify(payment),
         }
       );
       // if (!response.ok) {
@@ -80,6 +81,9 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.data?.receipt.push(action.payload);
     },
+    setCart:(state,action:PayloadAction<ICart>) => {
+       state.data = action.payload
+    }
   },
   extraReducers: (builder: ActionReducerMapBuilder<cartState>) => {
     builder.addCase(checkout.pending, (state) => {
