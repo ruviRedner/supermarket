@@ -3,6 +3,7 @@ import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createSlice,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { dataStatus } from "../../types/redux";
 import { IUser } from "../../types/user";
@@ -80,6 +81,9 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.data?.receipt.push(action.payload);
     },
+    setCart:(state,action:PayloadAction<ICart>) => {
+       state.data = action.payload
+    }
   },
   extraReducers: (builder: ActionReducerMapBuilder<cartState>) => {
     builder.addCase(checkout.pending, (state) => {
