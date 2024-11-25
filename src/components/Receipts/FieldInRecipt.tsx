@@ -9,9 +9,9 @@ export default function FieldInRecipt({historyItem}:props) {
   console.log(historyItem);
   
   return (
-    <div className='fieldInRecipt'>
+    <div className='receipt-items'>
         <h2>date: {historyItem.date.toString()}</h2>
-        <h2>Price : {historyItem.totalPrice}</h2>
+        <h2>TotalPrice : {historyItem.totalPrice}</h2>
     </div>
   )
 }

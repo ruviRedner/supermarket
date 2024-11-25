@@ -1,6 +1,14 @@
-.listReceipts {
+/* .listReceipts {
     display: flex;
     flex-direction: column;
     gap: 19px;
     
+} */
+.listReceipts {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
