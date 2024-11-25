@@ -8,8 +8,10 @@ export default function ListReceipts() {
   const user = useAppSelector((state) => state.user.user);
   const [historyList, sethistoryList] = useState<recipt[] |undefined>()
   useEffect(() => {
-     socket.emit('history',user)
+    if(!user) return
+     socket.emit('history',user._id)
     },[])
+    
   socket.on('history',async(data:recipt[])=>{
     await sethistoryList(data)
   })
