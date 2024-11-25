@@ -83,6 +83,9 @@ const cartSlice = createSlice({
     },
     setCart:(state,action:PayloadAction<ICart>) => {
        state.data = action.payload
+    },
+    logout:(state) => {
+      state.data = null
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<cartState>) => {
