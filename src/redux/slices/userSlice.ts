@@ -182,7 +182,7 @@ const userSlice = createSlice({
       .addCase(checkAuth.rejected, (state, action) => {
         state.error = action.error as string;
         state.role = undefined;
-        state.status = dataStatus.FAILED;
+        // state.status = dataStatus.FAILED;
       })
       .addCase(checkAuth.pending, (state) => {
         state.status = dataStatus.LOADING;
