@@ -22,7 +22,7 @@ export default function MyCart() {
       dispatch(cartSlice.actions.setCart(updatedCart));
     };
 
-    const handleAllProducts = (updatedProducts: IProduct[]) => {
+    const handleAllProducts = (updatedProducts: IProduct) => {
       dispatch(productSlice.actions.setProduct(updatedProducts));
     };
 
