@@ -93,7 +93,7 @@ export default function ProductCard(prop: Props) {
         </p>
       </div>
       <div>
-        <input
+        <input className="quantity-input"
           type="number"
           min="0"
           max={quantity}

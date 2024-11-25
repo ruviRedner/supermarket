@@ -16,9 +16,27 @@
     height: 45%;
     display: block;
     transition: transform 0.3s ease;
-    border-radius: 5px;
+    border-radius: 10px;
+    object-fit: cover;
   }
   
+  .quantity-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+    border :0px solid black;
+    backdrop-filter: blur(10px);
+    background: none;
+    text-align: center;
+    font-size: larger;
+    color: #525ba9;
+    font-weight: 900;
+    border: 1px solid #525ba9;
+    border-radius: 10px;
+
+  }
   .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
