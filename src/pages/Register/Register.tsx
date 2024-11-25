@@ -59,7 +59,7 @@ export default function Register() {
                 placeholder="creditCard"
                 type="text"
             />
-            <button onClick={hendelInRegister}>register</button>
+            <button className="register-btn" onClick={hendelInRegister}>register</button>
         </div>
     );
 }

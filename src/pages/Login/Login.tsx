@@ -57,7 +57,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}
             />
-            <button onClick={handelLogin}>Login</button>
+            <button className="login-btn" onClick={handelLogin}>Login</button>
 
             <p>
                 Don't have an accunt yet?
