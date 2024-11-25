@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./MyCart.css";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
-import cartSlice, { fetchCart } from "../../redux/slices/cartSlice";
+import cartSlice from "../../redux/slices/cartSlice";
 import { Trash2, Plus, Minus } from "lucide-react";
 import { socket } from "../../App";
 import { IProduct } from "../../types/product";
@@ -19,6 +19,7 @@ export default function MyCart() {
 
   useEffect(() => {
     const handleCartUpdated = (updatedCart: ICart) => {
+      console.log('Cart Data:', updatedCart)
       dispatch(cartSlice.actions.setCart(updatedCart));
     };
 
