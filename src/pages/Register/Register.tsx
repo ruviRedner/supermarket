@@ -6,7 +6,7 @@ import { fetchRegister, logout, returnStatusToIdle } from "../../redux/slices/us
 import { dataStatus } from "../../types/redux";
 
 export default function Register() {
-    const { status, user } = useAppSelector((state) => state.user);
+    const { status, user, error } = useAppSelector((state) => state.user);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [username, setUsername] = useState("");
@@ -33,7 +33,7 @@ export default function Register() {
     return (
         <div className="register">
             {status === dataStatus.FAILED ? (
-                <p>The user already exists</p>
+                <p> Something went wrong </p>
             ) : null}
             <input
                 onChange={(e) => {
