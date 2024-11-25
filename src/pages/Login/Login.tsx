@@ -9,7 +9,8 @@ import { administratorsEnum } from "../../types/enum/administrotorsEnum";
 const Login = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { user } = useAppSelector((state) => state.user);
+    const { user,error, status } = useAppSelector((state) => state.user);
+    const {} = useAppSelector((state) => state.user);
 
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
@@ -24,18 +25,24 @@ const Login = () => {
             navigate("/admin");
             dispatch(fetchLogin({ username, password }));
         } else {
-            navigate("/");
+            
             dispatch(fetchLogin({ username, password }));
+
         }
     };
 
     useEffect(() => {
-        if (!user) return;
-        navigate("/");
+        if (user){
+        setTimeout(() => navigate("/"), 2000);}
+        
     }, [user]);
+    console.log(status)
+    console.log(error)
 
     return (
         <div className="login">
+            {user && <h2>Hello {user.username} your logged in successfully</h2>}
+            { status === dataStatus.FAILED && <h2>{`one or more fields are incorrect${status}`}{}</h2>}
             <input
                 id="inp"
                 type="text"
