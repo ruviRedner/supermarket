@@ -29,10 +29,11 @@ const fetchLogin = createAsyncThunk(
       });
       if (!response.ok) {
         return thunkAPI.rejectWithValue("Couldn't login Please try again");
+        
       }
       const data = await response.json();
+      
       localStorage.setItem("token", data.data.token);
-      console.log(data.data.token);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
@@ -72,6 +73,9 @@ const checkAuth = createAsyncThunk(
   "user/verify",
   async (_, thunkAPI) => {
     const Token = localStorage.getItem("token");
+    if (!Token) {
+      return thunkAPI.rejectWithValue("No token found");
+    }
     try {
       const response = await fetch(
         `http://localhost:${port}/api/users/verify`,
@@ -131,7 +135,11 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.role = undefined;
+      state.status = dataStatus.IDLE
       localStorage.removeItem("token");
+    },
+    returnStatusToIdle: (state) =>{
+      state.status = dataStatus.IDLE
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<userState>) => {
@@ -140,11 +148,16 @@ const userSlice = createSlice({
         state.status = dataStatus.LOADING;
         state.error = null;
         state.user = null;
+
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.user = action.payload as unknown as IUser;
+        console.log(state.user);
+        
         state.error = null;
         state.status = dataStatus.SUCCESS;
+        console.log(state);
+        
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.error = action.error as string;
@@ -194,6 +207,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, returnStatusToIdle } = userSlice.actions;
 export { fetchLogin, fetchRegister, checkAuth };
 export default userSlice;

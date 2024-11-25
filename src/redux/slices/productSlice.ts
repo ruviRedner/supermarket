@@ -68,6 +68,7 @@ const fetchByName = createAsyncThunk(
       //   );
       // }
       const data = await response.json();
+      
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
