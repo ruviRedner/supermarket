@@ -11,7 +11,7 @@ export default function FieldInRecipt({historyItem}:props) {
   return (
     <div className='receipt-items'>
         <h2>date: {historyItem.date.toString()}</h2>
-        <h2>TotalPrice : {historyItem.totalPrice}</h2>
+        <h2>TotalPrice : {historyItem.totalPrice}$</h2>
     </div>
   )
 }
