@@ -49,7 +49,7 @@ export default function MyCart() {
       userId: user?._id,
       prodactName: ProductName,
       quantity: Quantity,
-      toggelQuantity:true
+      toggelQuantity: true
     });
   };
 
@@ -62,7 +62,7 @@ export default function MyCart() {
 
   const handleRemoveItem = (ProductName: string) => {
     console.log(ProductName);
-    
+
     socket.emit("removeItem", {
       userId: user?._id,
       productName: ProductName,
