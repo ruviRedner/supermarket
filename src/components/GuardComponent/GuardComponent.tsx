@@ -14,11 +14,11 @@ export default function GuardComponent({ children }: Props) {
     <div>{children}</div>
   )
  } 
- else if (state.status != dataStatus.FAILED) {
+ else if (state.status == dataStatus.LOADING) {
   return (
     <div>Loading ...</div>
   )
-}else if (!user ) {
+}else  {
   return (
     <div><Forbiden /></div>
   )
