@@ -180,9 +180,9 @@ const userSlice = createSlice({
         state.status = dataStatus.SUCCESS;
       })
       .addCase(checkAuth.rejected, (state, action) => {
-        state.error = action.error as string;
+        // state.error = action.error as string;
         state.role = undefined;
-        // state.status = dataStatus.FAILED;
+        state.status = dataStatus.IDLE;
       })
       .addCase(checkAuth.pending, (state) => {
         state.status = dataStatus.LOADING;

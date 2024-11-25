@@ -2,12 +2,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../redux/store'
 import { logout } from '../../redux/slices/userSlice'
+import cartSlice from '../../redux/slices/cartSlice'
 
 export default function Logout() {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const handleLogout = async () => {
          dispatch(logout())
+         dispatch(cartSlice.actions.logout())
          navigate('/')
     }
     return (
