@@ -72,6 +72,9 @@ const checkAuth = createAsyncThunk(
   "user/verify",
   async (_, thunkAPI) => {
     const Token = localStorage.getItem("token");
+    if (!Token) {
+      return thunkAPI.rejectWithValue("No token found");
+    }
     try {
       const response = await fetch(
         `http://localhost:${port}/api/users/verify`,
