@@ -14,7 +14,7 @@ export default function ListReceipts() {
     if(!user) return    
     
      socket.emit('history',user)
-    },[])
+    },[user])
 
   socket.on('history',async(data:recipt[])=>{
     await sethistoryList(data)

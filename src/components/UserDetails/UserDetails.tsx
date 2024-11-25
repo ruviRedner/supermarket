@@ -11,6 +11,7 @@ export default function UserDetails() {
         <div className="contaner">
             <p>{user && `username: ${user.username}`}</p>
             <p>{user && `creditCard: ************${user.creditCard.slice(-3)}`}</p>
+            <p>{user && `id: ${user._id}`}</p>
             <p>{!user && "Please log in."}</p>
             {!user && <NavLink className="navigat" to={"/login"}>login</NavLink>}
         </div>
