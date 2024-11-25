@@ -4,6 +4,7 @@ import ListReceipts from "../../components/Receipts/ListReceipts";
 import { useAppSelector } from "../../redux/store";
 
 export default function Profile() {    
+  
     return (
         <div>
             <UserDetails />
