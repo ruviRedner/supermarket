@@ -1,0 +1,27 @@
+.contaner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    background-color: #ded3d3;
+    font-size: 0.8rem; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 30vw;
+    height: 30vh;
+    color: black;
+    
+  }
+
+.contaner > p {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.navigat {
+    color: brown;
+    font-size: 20px;
+    font-weight: bolder;
+}
