@@ -3,10 +3,13 @@ import { socket } from '../../App'
 import { useAppSelector } from '../../redux/store';
 import { recipt } from '../../types/recipt';
 import FieldInRecipt from './FieldInRecipt';
+import './ListReceipts.css'
 
 export default function ListReceipts() {
   const user = useAppSelector((state) => state.user.user);
   const [historyList, sethistoryList] = useState<recipt[] |undefined>()
+  console.log(historyList);
+  
   useEffect(() => {
     if(!user) return    
     
@@ -17,7 +20,7 @@ export default function ListReceipts() {
     await sethistoryList(data)
    })
   return (
-    <div>
+    <div className='listReceipts'>
       {historyList?.map((h:recipt)=> <FieldInRecipt  historyItem={h}/>)}
     </div>
   )

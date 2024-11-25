@@ -1,15 +1,17 @@
 import React from 'react'
 import { recipt } from '../../types/recipt'
+import './FieldInRecipt.css'
 interface props{
     historyItem:recipt
 }
 
 export default function FieldInRecipt({historyItem}:props) {
+  console.log(historyItem);
+  
   return (
-    <div>
-        <h2>product code: {historyItem.idproduct}</h2>
-        <h3>price: {historyItem.price as any}</h3>
-        <h3>quantity: {historyItem.quantity as any}</h3>
+    <div className='fieldInRecipt'>
+        <h2>date: {historyItem.date.toString()}</h2>
+        <h2>Price : {historyItem.totalPrice}</h2>
     </div>
   )
 }
