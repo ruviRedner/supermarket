@@ -28,7 +28,7 @@ export default function ProductCard(prop: Props) {
 
   // Load all products when the component mounts
   useEffect(() => {
-    const handleProductsUpdate = (data: IProduct[]) => {
+    const handleProductsUpdate = (data:IProduct) => {
       dispatch(productSlice.actions.setProduct(data));
     };
 
@@ -36,7 +36,7 @@ export default function ProductCard(prop: Props) {
     const handleCartUpdate = async () => {
       if (user?._id) {
         await dispatch(fetchCart(user._id));
-        socket.emit("get-allProducts")
+        socket.emit("get-allProducts" ,_id)
       }
     };
 

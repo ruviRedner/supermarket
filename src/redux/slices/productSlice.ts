@@ -79,10 +79,23 @@ const productSlice = createSlice({
   name: "products",
   initialState: initialData,
   reducers: {
-    setProduct(state, action: PayloadAction<IProduct[]>){
-      state.data = action.payload
-    }
+    setProduct(state, action: PayloadAction<IProduct>) {
+      state.data = state.data.map((item) => {
+        if (!item) {
+          console.warn("Found null/undefined product:", item);
+          return item; 
+      }
+        if (item._id === (action.payload._id as string)) {
+          return {
+            ...item,
+            quantity: action.payload.quantity,
+          };
+        }
+        return item;
+      });
+    },
   },
+
   extraReducers: (builder: ActionReducerMapBuilder<productState>) => {
     builder
       .addCase(fetchAllProducts.pending, (state) => {
@@ -118,16 +131,14 @@ const productSlice = createSlice({
         state.status = dataStatus.LOADING;
         state.error = null;
       })
-      .addCase (fetchByName.fulfilled, (state, action) => {
+      .addCase(fetchByName.fulfilled, (state, action) => {
         state.data = action.payload as IProduct[];
         state.status = dataStatus.SUCCESS;
-
       })
-      .addCase(fetchByName.rejected, (state, action)=> {
+      .addCase(fetchByName.rejected, (state, action) => {
         state.error = action.error as string;
         state.status = dataStatus.FAILED;
-
-      })
+      });
   },
 });
 export const {} = productSlice.actions;
