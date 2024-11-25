@@ -24,43 +24,55 @@ export default function ProductCard(prop: Props) {
   const { _id, name, img, category, price, quantity, prevPrice, description } = prop.product;
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
-  const [Quentity, setQuentity] = useState(0);
+  const [quantitySelected, setQuantitySelected] = useState(0);
 
+  // Load all products when the component mounts
   useEffect(() => {
-    
     const handleProductsUpdate = (data: IProduct[]) => {
       dispatch(productSlice.actions.setProduct(data));
     };
 
+    // Handle cart update
+    const handleCartUpdate = async () => {
+      if (user?._id) {
+        await dispatch(fetchCart(user._id));
+        socket.emit("get-allProducts")
+      }
+    };
+
     socket.on("allProducts", handleProductsUpdate);
-    
-    
-    socket.on("addToCartSuccess", () => {
-      
-      socket.emit("get-allProducts");
-    });
-    
+    socket.on("cartUpdated", handleCartUpdate);
+
     return () => {
       socket.off("allProducts", handleProductsUpdate);
-      socket.off("addToCartSuccess");
+      socket.off("cartUpdated", handleCartUpdate);
     };
-  }, [dispatch]);
+  }, [ user?._id]);
 
+  // Emit event to add product to cart
   const addToCart = async () => {
-    if (Quentity === 0) {
-      alert("Quantity is required");
+    if (!user?._id) {
+      alert("You must be logged in to add items to the cart.");
+      return;
+    }
+    if (quantitySelected === 0) {
+      alert("Quantity is required.");
+      return;
+    }
+    if (quantitySelected > quantity) {
+      alert(`You cannot select more than ${quantity} items.`);
       return;
     }
 
     const data = {
-      userId: user?._id,
+      userId: user._id,
       prodactName: name,
-      quantity: Quentity,
+      quantity: quantitySelected,
     };
 
-    
     socket.emit("addToCart", data);
-    await dispatch(fetchCart(user?._id as string))
+    setQuantitySelected(0)
+    
   };
 
   return (
@@ -77,7 +89,7 @@ export default function ProductCard(prop: Props) {
           <span style={{ fontWeight: "bold" }}>Description:</span> {description}
         </p>
         <p>
-          <span style={{ fontWeight: "bold" }}>Available in Stack</span> {quantity}
+          <span style={{ fontWeight: "bold" }}>Available in Stock:</span> {quantity}
         </p>
       </div>
       <div>
@@ -85,11 +97,11 @@ export default function ProductCard(prop: Props) {
           type="number"
           min="0"
           max={quantity}
-          value={Quentity}
-          onChange={(e) => setQuentity(Number(e.target.value))}
+          value={quantitySelected}
+          onChange={(e) => setQuantitySelected(Number(e.target.value))}
           placeholder="Quantity"
         />
-        <button onClick={addToCart}>Add to cart</button>
+        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </div>
   );
