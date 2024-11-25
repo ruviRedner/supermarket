@@ -37,7 +37,7 @@ export default function MyCart() {
       socket.off("cartUpdated", handleCartUpdated);
       socket.off("allProducts", handleAllProducts);
     };
-  }, [dispatch, user._id]);
+  }, [ user._id]);
 
   const handleIncreaseQuantity = (ProductName: string, Quantity: number) => {
     if (Quantity === 0) {
