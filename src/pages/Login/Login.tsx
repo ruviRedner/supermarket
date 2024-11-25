@@ -23,9 +23,10 @@ const Login = () => {
         ) {
             navigate("/admin");
             dispatch(fetchLogin({ username, password }));
+        } else {
+            navigate("/");
+            dispatch(fetchLogin({ username, password }));
         }
-        navigate('/')
-        dispatch(fetchLogin({ username, password }));
     };
 
     useEffect(() => {
