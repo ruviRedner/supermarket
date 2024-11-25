@@ -33,7 +33,7 @@ export default function Register() {
     return (
         <div className="register">
             {status === dataStatus.FAILED ? (
-                <p>Something went wrong {`${error}`}</p>
+                <p> Something went wrong </p>
             ) : null}
             <input
                 onChange={(e) => {
