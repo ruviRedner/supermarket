@@ -6,6 +6,7 @@ import { RootState, useAppDispatch, useAppSelector } from '../../redux/store';
 import cartSlice from '../../redux/slices/cartSlice';
 import { socket } from '../../App';
 import { ICart } from '../../types/cart';
+import Discount from '../../components/discount/Discount';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <div className='home-container'>
       <SearchInput />
+      <Discount/>
       <CategoryList />
       <ProductList/>
     </div>

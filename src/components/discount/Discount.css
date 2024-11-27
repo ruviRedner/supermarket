@@ -1,0 +1,86 @@
+.sales-banner {
+  display: flex;
+  width: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0f4f8, #e6eaf0);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-family: 'Inter', 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  align-items: center;
+}
+
+.banner-content {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  align-items: center;
+  position: absolute;
+}
+
+.banner-content img {
+  width: 130px;
+  height: 170px;
+  margin-left: 15px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.banner-content:hover img {
+  transform: scale(1.05);
+}
+
+.banner-text {
+  flex-grow: 1;
+  padding-right: 20px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner-text h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.banner-text p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #4a4a4a;
+  line-height: 1.5;
+}
+
+.banner-text p strong {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+.banner-content.exiting {
+  transform: translateX(-100%) rotate(5deg); 
+  opacity: 0;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.banner-content.entering {
+  transform: translateX(100%) rotate(-5deg); 
+  opacity: 0;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.banner-content.active {
+  transform: translateX(0) rotate(0deg); 
+  opacity: 1;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
